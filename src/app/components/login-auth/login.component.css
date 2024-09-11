@@ -1,0 +1,29 @@
+#divTotal{
+    background-color: rgb(14, 16, 26);
+    height: 100vh;
+    color: white;
+}
+
+#inputLogin{
+    background-color: rgb(113, 113, 113); /* Cambiar el color de fondo del input */
+    border-color: rgb(113, 113, 113); /* Cambiar el color del borde del input */
+    color: white;
+    font-family: "Gill Sans", sans-serif;
+}
+
+.background-image {
+    position: relative;
+    z-index: 0;
+}
+
+.background-image::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://img.freepik.com/fotos-premium/sala-juegos-esta-llena-coloridos-juegos-arcade_662214-35580.jpg?w=740');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Opacidad de la imagen de fondo */
+    z-index: -1; /* Coloca el pseudo-elemento detrás del contenido */
+}

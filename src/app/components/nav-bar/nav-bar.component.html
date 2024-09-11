@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg"  style="background-color: rgb(42, 45, 70); position: fixed;
+width: 100%;
+z-index: 1000; ">
+  <div class="container-fluid" style="position: relative;">
+    <!-- <a class="navbar-brand" href=""><img src="../../../assets/icon.png" alt="Bootstrap" width="65" height="24"></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" style="position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item opciones">
+          <a class="nav-link active text-white oscurecer" routerLink="home" routerLinkActive="active-route">Inicio</a>
+        </li>
+        <li class="nav-item opciones">
+          <a class="nav-link text-white oscurecer" routerLink="aboutus" routerLinkActive="active-route">Quien Soy</a>
+        </li>
+        <ng-container *ngIf="userValue != null ; else MostrarUsuario">
+          <li class="nav-item opciones">
+            <a class="nav-link text-white oscurecer" style="user-select: none;">{{userValue.email}}</a>
+          </li>           
+          <li class="nav-item opciones" >
+            <a class="nav-link text-white oscurecer" routerLink="chat" routerLinkActive="active-route" >Sala Chat</a>
+          </li> 
+          <li class="nav-item opciones" >
+            <a class="nav-link text-white oscurecerLogOut" (click)="logOut()" style="user-select: none; cursor: pointer;" >LogOut</a>
+          </li> 
+        </ng-container>
+        <ng-template #MostrarUsuario>
+          <li class="nav-item opciones" >
+            <a class="nav-link text-white oscurecer" routerLink="login" routerLinkActive="active-route">LogIn</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
