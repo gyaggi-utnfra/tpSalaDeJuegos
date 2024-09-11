@@ -30,7 +30,7 @@ export class RegisterAuthComponent {
       password : this.userPass || '',
     }
     this.authService.register(credential).then((res) =>{
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
     }).catch((e) =>{
       this.errorRegister = true;
       console.log(e.code);

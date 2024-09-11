@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login-auth/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutusComponent } from './components/aboutus/aboutus.component';
-import { RegisterAuthComponent } from './components/register-auth/register-auth.component';
+
 
 export const routes: Routes = [
     {
@@ -18,9 +15,9 @@ export const routes: Routes = [
         ),
     },
     {
-        path: "aboutus",
-        loadComponent: () => import('./components/aboutus/aboutus.component').then(
-            (m) => m.AboutusComponent,
+        path: "quien-soy",
+        loadComponent: () => import('./components/quien-soy/quien-soy.component').then(
+            (m) => m.QuienSoyComponent,
         ),
     },
     {
@@ -28,6 +25,16 @@ export const routes: Routes = [
         loadComponent: () => import('./components/register-auth/register-auth.component').then(
             (m) => m.RegisterAuthComponent,
         ),
+    },
+    {
+        path: " ",
+        redirectTo: "login",
+        pathMatch: "full",
+    },
+    {
+        path: "**",
+        redirectTo: "login",
+        pathMatch: "full",
     },
     
 ];
