@@ -40,7 +40,7 @@ export class LoginComponent {
 
 
     this.authService.logIn(credential).then((res) =>{
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
       let col = collection(this.firestore, 'logins');
       addDoc(col, { fecha: new Date(), "email": this.userMail});
     }).catch((e) =>{

@@ -16,5 +16,5 @@ export const appConfig: ApplicationConfig = {
     projectId: "saladejuegos-d3933",
     storageBucket: "saladejuegos-d3933.appspot.com",
     messagingSenderId: "592924014661",
-    appId: "1:592924014661:web:1518a7b601bd4003930b2c"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideHttpClient(), provideAnimationsAsync(),]
+    appId: "1:592924014661:web:1518a7b601bd4003930b2c"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync(),]
 };

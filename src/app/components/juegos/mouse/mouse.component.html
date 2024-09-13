@@ -1,0 +1,16 @@
+<div id="divTotal" class="background-image">
+    <div class="destruccion-mouse-container">
+      <h2>¡La Destrucción del Mouse!</h2>
+      <div class="game-info">
+        <p>Tiempo restante: <span>{{timer}}s</span></p>
+        <p>Clicks: <span>{{clickCount}}</span></p>
+        <p>Record: <span>{{highScore}}</span></p>
+      </div>
+      <div *ngIf="!gameRunning" class="start-button-container">
+        <button mat-raised-button color="primary" (click)="startGame()">¡Empezar Juego!</button>
+      </div>
+      <div *ngIf="gameRunning" class="game-area" (click)="clickArea()">
+        ¡Haz clic aquí!
+      </div>
+    </div>
+  </div>

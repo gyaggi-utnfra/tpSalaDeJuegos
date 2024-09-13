@@ -27,6 +27,30 @@ export const routes: Routes = [
         ),
     },
     {
+        path: "ahorcado",
+        loadComponent: () => import('./components/juegos/ahorcado/ahorcado.component').then(
+            (m) => m.AhorcadoComponent,
+        ),
+    },
+    {
+        path: "mayormenor",
+        loadComponent: () => import('./components/juegos/mayormenor/mayormenor.component').then(
+            (m) => m.MayormenorComponent,
+        ),
+    },
+    {
+        path: "preguntados",
+        loadComponent: () => import('./components/juegos/preguntados/preguntados.component').then(
+            (m) => m.PreguntadosComponent,
+        ),
+    },    
+    {
+        path: "mouse",
+        loadComponent: () => import('./components/juegos/mouse/mouse.component').then(
+            (m) => m.MouseComponent,
+        ),
+    },    
+    {
         path: " ",
         redirectTo: "login",
         pathMatch: "full",
@@ -36,5 +60,4 @@ export const routes: Routes = [
         redirectTo: "login",
         pathMatch: "full",
     },
-    
 ];

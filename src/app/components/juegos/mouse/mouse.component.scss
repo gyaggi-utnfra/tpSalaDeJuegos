@@ -1,0 +1,57 @@
+#divTotal {
+    background: linear-gradient(to right, rgb(14, 16, 28), rgb(39, 43, 67));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .destruccion-mouse-container {
+    background-color: rgb(42, 45, 70); /* Color de fondo similar al login */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #d344d5; /* Color del título */
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .game-info {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .game-info p {
+    margin: 0.5rem 0;
+  }
+  
+  .game-info span {
+    font-weight: bold;
+  }
+  
+  .start-button-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .game-area {
+    background-color: rgb(113, 113, 113);
+    color: white;
+    font-size: 1.5rem;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .game-area:hover {
+    background-color: rgb(89, 89, 89);
+  }

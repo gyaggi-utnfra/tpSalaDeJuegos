@@ -1,0 +1,29 @@
+.dialog-title {
+    text-align: center;
+    color: #3f51b5; /* Color de texto */
+    font-size: 1.5rem; /* Tamaño de fuente */
+}
+
+.dialog-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.dialog-image-container {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    padding: 10px;
+}
+
+.dialog-image {
+    max-height: 200px; /* Ajusta la altura máxima */
+    width: auto; /* Ajusta el ancho automáticamente */
+    object-fit: contain; /* Ajusta la imagen para que sea completamente visible */
+    display: block;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+.dialog-actions {
+    justify-content: center;
+    margin-top: 20px;
+}

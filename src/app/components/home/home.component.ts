@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { inject, signal } from '@angular/core';
+import { inject } from '@angular/core';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { Observable } from 'rxjs';
 import { User } from 'firebase/auth';
+import { DialogService } from '../../services/dialog.service';
 
 
 
@@ -25,6 +26,7 @@ export class HomeComponent {
   descripcion :string = ""; 
   juegoTitulo:string = ""; 
 
+  private dialog = inject(DialogService);
   private authservice = inject(FirebaseAuthService);
   private router = inject(Router);
 
@@ -37,7 +39,6 @@ export class HomeComponent {
     })
   }
 
-
   seleccionarImagen(numeroImagen: number): void {
     this.juegoSeleccionado = numeroImagen;
     this.jugar();
@@ -48,13 +49,16 @@ export class HomeComponent {
     if(this.userValue?.email != null){
         switch(this.juegoSeleccionado){
           case 1:
-            this.router.navigateByUrl('/preguntados');
+            this.router.navigateByUrl('/ahorcado');
             break;
           case 2:
-            this.router.navigateByUrl('/mayormenor');
+            this.router.navigateByUrl('/cartas');
             break;
           case 3:
-            this.router.navigateByUrl('/ahorcado');
+            this.router.navigateByUrl('/pokemon');
+            break;
+            case 4:
+            this.router.navigateByUrl('/mouse');
             break;
         }
       }
@@ -68,16 +72,20 @@ export class HomeComponent {
     switch(numDesc)
     {
       case 1:
-        this.juegoTitulo = "Preguntados";
-        this.descripcion = "¡Demuestra tu conocimiento Pokémon! Adivina el nombre del Pokémon a partir de su imagen antes de que se acabe el tiempo. Cada acierto te lleva a la siguiente ronda. ¿Cuántos puedes adivinar?";
+        this.juegoTitulo = "Ahorcado";
+        this.descripcion = "Descubre la palabra secreta una letra a la vez antes de que se complete el dibujo del ahorcado. Cada fallo te acerca al final del juego. ¿Cuántas palabras lograrás adivinar antes de que se acabe el tiempo?";
         break;
       case 2:
         this.juegoTitulo = "Mayor o Menor";
-        this.descripcion = "¡Pon a prueba tu intuición en este emocionante juego de cartas! Adivina si la siguiente carta será mayor, menor o igual que la actual. Cada acierto te lleva más lejos en el juego. ¿Hasta dónde puedes llegar con tus predicciones?";
+        this.descripcion = "¡Desafía tu intuición con este divertido juego de cartas. Predice si la siguiente carta será mayor, menor o igual que la actual. Cada acierto te lleva más lejos en el juego. ¿Cuál será tu récord con tus predicciones?";
         break;
       case 3:
-        this.juegoTitulo = "Ahorcado";
-        this.descripcion = "Adivina la palabra oculta letra por letra antes de que el dibujo del ahorcado se complete. Cada error te acerca al final del juego. ¿Cuántas palabras puedes adivinar antes de quedar colgado? ";
+        this.juegoTitulo = "Pokemon";
+        this.descripcion = "¡Pone a prueba tu saber sobre Pokémon! Identifica el nombre del Pokémon basándote en su imagen antes de que se agote el tiempo. Cada respuesta correcta te avanza a la siguiente ronda. ¿Cuántos Pokémon podrás identificar?";
+        break;
+      case 4:
+        this.juegoTitulo = "Destruccion del mouse";
+        this.descripcion = "¡En este juego, el objetivo es hacer clic en un área específica tantas veces como sea posible en un tiempo limitado. El jugador con más clics al final del tiempo es el ganador.";
         break;
     }
     this.mostrarDescripcion = true;
@@ -88,11 +96,13 @@ export class HomeComponent {
   }
 
   openDialog(){
-    // this.dialog.openDialog({tittle: 'ALTO AHÍ!', content: `Debes iniciar sesión para poder jugar.`, img:'../../../assets/stop.png', retryAction:() => this.navLogin(), btn: 'Ir al login'});
+    this.dialog.openDialog({tittle: 'Acceso denegado', content: `Aún no has iniciado sesión.`, img:'../../../assets/stop.jpg', retryAction:() => this.navLogin(), btn: 'Ir al login'});
   }
 
   navLogin()
   {
     this.router.navigateByUrl('/login');
   }
+
 }
+
