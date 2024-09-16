@@ -57,6 +57,12 @@ export const routes: Routes = [
         ),
     },    
     {
+        path: "encuesta",
+        loadComponent: () => import('./components/encuesta/encuesta.component').then(
+            (m) => m.EncuestaComponent,
+        ),
+    },   
+    {
         path: " ",
         redirectTo: "login",
         pathMatch: "full",
