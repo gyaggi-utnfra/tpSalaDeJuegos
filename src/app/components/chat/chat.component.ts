@@ -24,18 +24,21 @@ export class ChatComponent implements OnInit {
   messages$: Observable<Message[]> = of([]);
   newMessage: string = '';
   user: string = '';
-  
+
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
   constructor() {
     this.authService.getUser().subscribe((user: User | null) => {
-      if (user) {
-        this.user = user.email || 'User';
-      } else {
-        this.user = 'Guest';
-      }
+      this.user = user ? user.email || 'User' : 'Guest';
+      this.loadMessages();
     });
+  }
 
+  ngOnInit(): void {
+    this.loadMessages();
+  }
+
+  private loadMessages() {
     const messagesCollection: CollectionReference = collection(this.firestore, 'messages');
     const q = query(messagesCollection, orderBy('timestamp'));
 
@@ -45,15 +48,13 @@ export class ChatComponent implements OnInit {
         return {
           ...data,
           timestamp: data.timestamp instanceof Timestamp ? data.timestamp.toDate() : data.timestamp,
-          isUserMessage: data.user === this.user
+          isUserMessage: data.user === this.user // Asegura que el mensaje se clasifique correctamente
         };
       });
       this.messages$ = of(messages);
-      this.scrollToBottom(); // Desplazar al final cuando llegan nuevos mensajes
+      setTimeout(() => this.scrollToBottom(), 0); // Asegura que el scroll al final funcione
     });
   }
-
-  ngOnInit(): void {}
 
   async sendMessage() {
     if (this.newMessage.trim()) {
@@ -73,10 +74,8 @@ export class ChatComponent implements OnInit {
   }
 
   scrollToBottom(): void {
-    setTimeout(() => {
-      if (this.messagesContainer) {
-        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
-      }
-    }, 0);
+    if (this.messagesContainer) {
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    }
   }
 }
