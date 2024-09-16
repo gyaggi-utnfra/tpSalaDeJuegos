@@ -1,21 +1,33 @@
 import { Component, Inject } from '@angular/core';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef  } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-record-dialog',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatButton],
   templateUrl: './record-dialog.component.html',
   styleUrls: ['./record-dialog.component.scss']
 })
 export class RecordDialogComponent {
-  constructor(public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string; buttonText: string }
-  ) { }
+
+  constructor(
+    public dialogRef: MatDialogRef<RecordDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { clickCount: number, highScore: number },
+    private router: Router
+  ) {}
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  irAlHome() {
+    this.dialogRef.close();
+    this.router.navigate(['/home']); 
+  }
+
+  jugarDeNuevo() {
+    this.dialogRef.close();
+    this.router.navigateByUrl('/').then(() => {
+      this.router.navigate(['/mouse']); 
+    });
   }
 }

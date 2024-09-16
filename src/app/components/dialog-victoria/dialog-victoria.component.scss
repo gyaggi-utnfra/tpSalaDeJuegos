@@ -1,0 +1,46 @@
+/* dialog-victoria.component.scss */
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem); /* Ajusta el margen superior para centrar verticalmente */
+  margin: 1rem auto; /* Margen automático para centrar horizontalmente */
+}
+
+.modal-content {
+  position: relative;
+  border-radius: 0.3rem;
+}
+
+.modal-header {
+  background-color: #28a745; /* Verde para el diálogo de victoria */
+  color: white;
+}
+
+.modal-body {
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background-color: #28a745; /* Verde para el botón de "Jugar de nuevo" */
+  border-color: #28a745;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Gris para el botón de "Ir al menú" */
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

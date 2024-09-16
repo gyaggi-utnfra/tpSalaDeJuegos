@@ -1,0 +1,46 @@
+/* dialog-derrota.component.scss */
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem); /* Ajusta el margen superior para centrar verticalmente */
+  margin: 1rem auto; /* Margen automático para centrar horizontalmente */
+}
+
+.modal-content {
+  position: relative;
+  border-radius: 0.3rem;
+}
+
+.modal-header {
+  background-color: #dc3545; /* Rojo para el diálogo de derrota */
+  color: white;
+}
+
+.modal-body {
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background-color: #dc3545; /* Rojo para el botón de "Jugar de nuevo" */
+  border-color: #dc3545;
+}
+
+.btn-primary:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Gris para el botón de "Ir al menú" */
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

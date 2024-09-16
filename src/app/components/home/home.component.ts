@@ -52,10 +52,10 @@ export class HomeComponent {
             this.router.navigateByUrl('/ahorcado');
             break;
           case 2:
-            this.router.navigateByUrl('/cartas');
+            this.router.navigateByUrl('/mayormenor');
             break;
           case 3:
-            this.router.navigateByUrl('/pokemon');
+            this.router.navigateByUrl('/preguntados');
             break;
             case 4:
             this.router.navigateByUrl('/mouse');

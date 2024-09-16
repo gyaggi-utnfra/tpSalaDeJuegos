@@ -1,1 +1,26 @@
-<p>preguntados works!</p>
+<div class="container-fluid">
+    <div class="card quiz-container">
+      <div class="card-header quiz-head">
+        <h1 class="quiz-title">Preguntados</h1>
+        <div class="quiz-score">
+          <span>Puntaje: <span class="score">{{puntaje}}</span></span>
+          <span class="timer">Tiempo: {{ remainingTime }}s</span>
+        </div>
+      </div>
+      <div class="card-body quiz-body">
+        <h2 class="quiz-question" id="question">¿Qué Pokémon es?</h2>
+        <div class="pokemon-div">
+          <img *ngIf="pokemonObs$ | async as pokemonObs" src="{{pokemonObs.sprites.front_default}}" alt="Pokémon" class="pokemon-image">
+        </div>
+        <ul class="quiz-options">
+          <li (click)="verificarRespuesta(1)"> {{opcionUno}} </li>
+          <li (click)="verificarRespuesta(2)"> {{opcionDos}} </li>
+          <li (click)="verificarRespuesta(3)"> {{opcionTres}} </li>
+          <li (click)="verificarRespuesta(4)"> {{opcionCuatro}} </li> 
+        </ul>
+      </div>
+      <div class="card-footer quiz-foot">
+        <button type="button" [disabled]="botonDeshabilitado" (click)="reiniciar()">Reiniciar</button>
+      </div>
+    </div>
+  </div>

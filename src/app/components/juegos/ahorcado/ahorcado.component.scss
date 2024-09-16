@@ -1,0 +1,134 @@
+* {
+    user-select: none;
+  }
+  
+  .ahorcado-img {
+    height: 300px;
+  }
+  
+  button {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 15vh;
+    height: 5vh;
+    background-color: #009970;
+    color: #fff;
+    font-size: 2.5vh;
+  }
+  
+  .score-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .score-value {
+    font-weight: normal;
+  }
+  
+  .score-container {
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .score {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .score-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .score-button:hover {
+    background-color: #0056b3;
+  }
+
+  .min-100vh {
+    min-height: 100vh;
+    background-image: url("../../../../assets/ahorcado.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center center; 
+    position: relative;
+  }
+  
+  .min-100vh::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(to top, #000 0%, transparent);
+    background-size: cover;
+  }
+  
+  .container {
+    z-index: 1;
+  }
+  
+  .containerBtn {
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 80vh;
+    margin-top: 30px;
+    margin-bottom: -50px;
+  }
+  
+  .intentosContainer {
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: white; 
+  }
+  
+  h1 {
+    color: #fff; 
+    font-size: 3rem; 
+    margin: 0;
+    font-family: 'Caveat', cursive; 
+    text-shadow: 
+      1px 1px 0 #000, 
+      1px 1px 1px rgba(0, 0, 0, 0.3), 
+      -1px -1px 1px rgba(0, 0, 0, 0.3),
+      1px -1px 1px rgba(0, 0, 0, 0.3), 
+      -1px 1px 1px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-transform: uppercase; 
+    font-weight: bold;
+  }
+  
+  .letra {
+    height: 5vh; 
+    width: 5vh;
+    display: inline-block;
+    text-align: center;
+    line-height: 5vh; 
+    font-size: 2rem; 
+    border-radius: 30%;
+    margin: 10px;
+  }
+  
+  .letra-elegida {
+    opacity: 30%;
+    background-color: #000;
+    color: #fff; 
+  }
+  
+  .oscurecer:hover {
+    background-color: #999;
+    color: #fff; 
+  }
+  

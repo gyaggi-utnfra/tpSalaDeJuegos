@@ -4,7 +4,6 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { UserInterface } from '../interfaces/user.interface';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -28,4 +27,5 @@ export class FirebaseAuthService {
   getUser(){
     return authState(this.auth);
   }
+
 }

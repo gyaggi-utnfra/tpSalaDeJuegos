@@ -1,0 +1,67 @@
+* {
+    user-select: none;
+  }
+  
+  .min-100vh {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 80px;
+  }
+  
+  .bg-dark {
+    background-color: #000;
+  }
+  
+  .titulo {
+    letter-spacing: 2px;
+    font-size: 1.5rem; 
+    color: white;
+  }
+  
+  .deck {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .card {
+    width: 120px; 
+    height: 180px; 
+    background: white;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease;
+  }
+  
+  .card:hover {
+    transform: translate(-1px, -3px);
+  }
+  
+  .bg-success {
+    background-color: rgb(65, 148, 61) !important;
+  }
+  
+  .score-container h2 {
+    font-size: 1.25rem;
+  }
+  
+  .botones-container h3 {
+    font-size: 1.25rem;
+  }
+  
+  .btn-warning {
+    background-color: rgb(255, 193, 7);
+    border-color: rgb(255, 193, 7);
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .btn-warning:hover {
+    background-color: rgb(255, 180, 7);
+    border-color: rgb(255, 180, 7);
+  }

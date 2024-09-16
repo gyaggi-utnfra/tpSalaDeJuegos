@@ -43,11 +43,17 @@ export const routes: Routes = [
         loadComponent: () => import('./components/juegos/preguntados/preguntados.component').then(
             (m) => m.PreguntadosComponent,
         ),
-    },    
+    },
     {
         path: "mouse",
         loadComponent: () => import('./components/juegos/mouse/mouse.component').then(
             (m) => m.MouseComponent,
+        ),
+    },    
+    {
+        path: "chat",
+        loadComponent: () => import('./components/chat/chat.component').then(
+            (m) => m.ChatComponent,
         ),
     },    
     {

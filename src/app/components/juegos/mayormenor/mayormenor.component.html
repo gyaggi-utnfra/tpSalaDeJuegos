@@ -1,1 +1,25 @@
-<p>mayormenor works!</p>
+<div class="min-100vh d-flex justify-content-center align-items-center bg-dark pt-5 ">
+    <div class="container text-center">
+      <div class="bg-success text-white rounded-pill py-2 mb-3">
+        <h1 class="titulo mb-0">Mayor o Menor</h1>
+      </div>
+      
+      <div class="deck mb-3 d-flex justify-content-center gap-2">
+        <div class="card" style="background-image: url({{cartaActual?.url}});"></div>
+        <div class="card" style="background-image: url('../../../../assets/cartas/tapa.png');"></div>
+      </div>
+  
+      <div class="bg-success text-white rounded-pill py-2 mb-3">
+        <h2 class="mb-0">Puntuación: {{ puntaje }} - Intentos: {{ intentos }}</h2>
+      </div>
+  
+      <div class="bg-success text-white rounded-pill py-2">
+        <h3 class="mb-3">¿La siguiente carta será mayor, menor o igual?</h3>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-warning mx-1" [disabled]="botonDeshabilitado" (click)="verificarAdivinanza('MAYOR')">Mayor</button>
+          <button class="btn btn-warning mx-1" [disabled]="botonDeshabilitado" (click)="verificarAdivinanza('IGUAL')">Igual</button>
+          <button class="btn btn-warning mx-1" [disabled]="botonDeshabilitado" (click)="verificarAdivinanza('MENOR')">Menor</button>
+        </div>
+      </div>
+    </div>
+  </div>

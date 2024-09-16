@@ -1,7 +1,18 @@
-<h2 mat-dialog-title>{{data.title}}</h2>
-<mat-dialog-content>
-  <p>{{data.message}}</p>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onClose()">{{data.buttonText}}</button>
-</mat-dialog-actions>
+<div class="modal fade show d-block" id="modal-victoria" tabindex="-1" role="dialog" aria-labelledby="dialog-title">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dialog-title">¡Ganaste!</h5>
+      </div>
+      <div class="modal-body">
+        <p>¡Felicidades, has establecido un nuevo récord!</p>
+        <p>Clicks: <strong>{{ data.clickCount }}</strong></p>
+        <p>Record: <strong>{{ data.highScore }}</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="jugarDeNuevo()">Jugar de nuevo</button>
+        <button type="button" class="btn btn-secondary" (click)="irAlHome()">Ir al menú</button>
+      </div>
+    </div>
+  </div>
+</div>
