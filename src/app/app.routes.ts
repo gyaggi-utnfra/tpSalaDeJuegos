@@ -13,7 +13,6 @@ export const routes: Routes = [
         loadComponent: () => import('./components/home/home.component').then(
             (m) => m.HomeComponent,
         ),
-        canActivate: [AuthGuard],  
     },
     {
         path: "quien-soy",
@@ -71,12 +70,12 @@ export const routes: Routes = [
     },   
     {
         path: " ",
-        redirectTo: "login",
+        redirectTo: "home",
         pathMatch: "full",
     },
     {
         path: "**",
-        redirectTo: "login",
+        redirectTo: "home",
         pathMatch: "full",
     },
 ];
