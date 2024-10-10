@@ -1,15 +1,22 @@
-#divTotal {
+#contenedorPrincipal {
   background-color: rgb(14, 16, 26);
-  height: 100vh;
+  min-height: 100vh; /* Mantiene el fondo ocupando toda la altura de la ventana */
+  padding: 40px 0; /* Aumenta el padding para más espacio */
   color: white;
+  position: relative; /* Para que la imagen de fondo se alinee correctamente */
+  overflow: hidden; /* Evita el desbordamiento */
 }
 
-.background-image {
-  position: relative;
-  z-index: 0;
+.imagen-fondo {
+  position: absolute; /* Cambiado a absoluto */
+  top: 0; /* Alineado al principio */
+  left: 0; /* Alineado al principio */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  z-index: -1; /* Asegura que esté detrás del contenido */
 }
 
-.background-image::before {
+.imagen-fondo::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -18,53 +25,52 @@
   background-size: cover;
   background-position: center;
   opacity: 0.3;
-  z-index: -1;
 }
 
-.quien-soy-content {
-  background-color: rgb(42, 45, 70);
+.contenido-quiensoy {
+  background-color: rgba(42, 45, 70, 0.8); /* Añadido un poco de transparencia */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 80vw; /* Ajusta según sea necesario */
-  margin: auto;
+  max-width: 80vw; 
+  margin: 50px auto; 
   color: white;
-  overflow: auto; /* Añadido para manejar el desbordamiento */
+  position: relative; /* Asegura que el contenido esté por encima */
 }
 
-.foto {
+.seccion-foto {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
 }
 
-.foto-perfil {
+.foto-perfil-redonda {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-h1, h2 {
+.titulo-principal, .titulo-secundario {
   color: white;
   font-weight: bold;
 }
 
-h1 {
-  font-size: 3.5vh; /* Ajustado para que coincida con el tamaño de "Sobre mi juego" */
-  margin-bottom: 0.5rem; /* Ajustado para mantener el espaciado */
+.titulo-principal {
+  font-size: 3.5vh; 
+  margin-bottom: 0.5rem; 
 }
 
-h2 {
-  font-size: 3vh; /* Ajustado para que coincida con el tamaño de "Sobre mi juego" */
-  margin-bottom: 0.5rem; /* Ajustado para mantener el espaciado */
+.titulo-secundario {
+  font-size: 3vh; 
+  margin-bottom: 0.5rem; 
 }
 
-p {
+.texto-parrafo {
   color: white;
   line-height: 1.6;
-  font-size: 1.5vh; /* Ajustado para que coincida con el tamaño del párrafo */
+  font-size: 1.5vh;
   margin: 0 auto;
-  max-width: 90%; /* Limita el ancho máximo del texto */
-  text-align: justify; /* Mejora la distribución del texto */
+  max-width: 90%;
+  text-align: justify;
 }

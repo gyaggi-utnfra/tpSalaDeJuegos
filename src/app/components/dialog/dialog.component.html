@@ -1,13 +1,13 @@
-<h2 class="dialog-title" mat-dialog-title>{{data.tittle}}</h2>
-<mat-dialog-content class="dialog-content">
-    <div>
-        <p>{{data.content}}</p>
-        <div class="dialog-image-container">
-            <img src="{{data.img}}" class="dialog-image">
-        </div>
+<h2 class="dialog-title text-center">{{ data.title }}</h2>
+<mat-dialog-content class="dialog-content" [@slideInBounce]>
+  <div>
+    <p>{{ data.content }}</p>
+    <div class="dialog-image-container">
+      <img src="{{ data.img }}" class="dialog-image img-fluid">
     </div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions class="dialog-actions">
-    <button mat-button mat-dialog-close (click)="onMenuClick()">Menú</button>
-    <button mat-button mat-dialog-close (click)="onRetryClick()">{{data.btn}}</button>
+  <button mat-button mat-dialog-close (click)="onMenuClick()" class="btn btn-secondary">Menú</button>
+  <button mat-button mat-dialog-close (click)="onRetryClick()" class="btn btn-primary">{{ data.btn }}</button>
 </mat-dialog-actions>

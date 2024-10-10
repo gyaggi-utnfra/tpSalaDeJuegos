@@ -1,38 +1,26 @@
 <div id="divTotal" class="background-image">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 text-center">
-                <div class="caja-juegos">
-                    <div class="card">
-                        <img src="../../../assets/ahorcado.jpg" class="card-img-top imagenes-juegos" (click)="seleccionarImagen(1)" (mouseover)="mostrarDesc(1)" (mouseleave)="ocultarDesc()" draggable="false">
-                        <div class="card-body">
-                            <h5 class="card-title">Ahorcado</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="../../../assets/cartas.jpg" class="card-img-top imagenes-juegos" (click)="seleccionarImagen(2)" (mouseover)="mostrarDesc(2)" (mouseleave)="ocultarDesc()" draggable="false">
-                        <div class="card-body">
-                            <h5 class="card-title">Mayor o Menor</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="../../../assets/Pokemon.jpg" class="card-img-top imagenes-juegos" (click)="seleccionarImagen(3)" (mouseover)="mostrarDesc(3)" (mouseleave)="ocultarDesc()" draggable="false">
-                        <div class="card-body">
-                            <h5 class="card-title">Preguntados</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="../../../assets/mouseonfire.jpg" class="card-img-top imagenes-juegos" (click)="seleccionarImagen(4)" (mouseover)="mostrarDesc(4)" (mouseleave)="ocultarDesc()" draggable="false">
-                        <div class="card-body">
-                            <h5 class="card-title">Destruccion del mouse</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-description" *ngIf="mostrarDescripcion">
-                    <h2>{{juegoTitulo}}</h2>
-                    <p>{{descripcion}}</p>
-                </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 text-center">
+        <div class="caja-juegos row">
+          <div *ngFor="let juego of juegos" class="col-6 col-md-3 mb-4">
+            <div class="card m-2"
+                 (mouseenter)="seleccionarJuego(juego)"
+                 (mouseleave)="ocultarDesc()"
+                 (click)="navegar(juego)">
+              <img [src]="juego.img" class="card-img-top" draggable="false">
+              <div class="card-body">
+                <h5 class="card-title">{{ juego.titulo }}</h5>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div *ngIf="mostrarDescripcion" class="game-description show">
+          <h2>{{ juegoTitulo }}</h2>
+          <p>{{ descripcion }}</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

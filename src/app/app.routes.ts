@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -13,6 +13,7 @@ export const routes: Routes = [
         loadComponent: () => import('./components/home/home.component').then(
             (m) => m.HomeComponent,
         ),
+        canActivate: [AuthGuard],  
     },
     {
         path: "quien-soy",
@@ -31,36 +32,42 @@ export const routes: Routes = [
         loadComponent: () => import('./components/juegos/ahorcado/ahorcado.component').then(
             (m) => m.AhorcadoComponent,
         ),
+        canActivate: [AuthGuard],  
     },
     {
         path: "mayormenor",
         loadComponent: () => import('./components/juegos/mayormenor/mayormenor.component').then(
             (m) => m.MayormenorComponent,
         ),
-    },
+        canActivate: [AuthGuard],     
+     },
     {
         path: "preguntados",
         loadComponent: () => import('./components/juegos/preguntados/preguntados.component').then(
             (m) => m.PreguntadosComponent,
         ),
+        canActivate: [AuthGuard],  
     },
     {
         path: "mouse",
         loadComponent: () => import('./components/juegos/mouse/mouse.component').then(
             (m) => m.MouseComponent,
         ),
+        canActivate: [AuthGuard],  
     },    
     {
         path: "chat",
         loadComponent: () => import('./components/chat/chat.component').then(
             (m) => m.ChatComponent,
         ),
+        canActivate: [AuthGuard],  
     },    
     {
         path: "encuesta",
         loadComponent: () => import('./components/encuesta/encuesta.component').then(
             (m) => m.EncuestaComponent,
         ),
+        canActivate: [AuthGuard], 
     },   
     {
         path: " ",

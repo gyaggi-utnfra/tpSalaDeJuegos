@@ -1,18 +1,17 @@
-
-  <div class="modal fade show d-block" id="modal-principal" tabindex="-1" role="dialog" aria-labelledby="dialog-title">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="dialog-title">¡Perdiste!</h5>
-        </div>
-        <div class="modal-body">
-          <p>La palabra era: <strong>{{ data.palabra }}</strong></p>
-          <p>¡Mejor suerte la próxima vez!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="jugarDeNuevo()">Jugar de nuevo</button>
-          <button type="button" class="btn btn-secondary" (click)="irAlHome()">Ir al menú</button>
-        </div>
+<div class="modal fade show d-block" id="modal-principal" tabindex="-1" role="dialog" aria-labelledby="dialog-title">
+  <div class="modal-dialog" role="document" @dialogAnimation>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dialog-title">¡Perdiste!</h5>
+      </div>
+      <div class="modal-body">
+        <p>La palabra era: <strong>{{ data.palabra }}</strong></p>
+        <p>¡Mejor suerte la próxima vez!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="jugarDeNuevo()">Jugar de nuevo</button>
+        <button type="button" class="btn btn-secondary" (click)="irAlHome()">Ir al menú</button>
       </div>
     </div>
   </div>
+</div>
