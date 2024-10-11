@@ -1,70 +1,91 @@
 <div class="background-image">
-    <div class="container">
-      <div class="card">
-        <div class="card-header bg-primary text-white">
-          <h4 class="mb-0">Encuesta</h4>
-        </div>
-        <div class="card-body">
-          <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
-            <div class="form-group mb-3">
-              <label for="nombre">Nombre:</label>
-              <input id="nombre" formControlName="nombre" class="form-control" />
-              <div *ngIf="encuestaForm.controls['nombre'].invalid && encuestaForm.controls['nombre'].touched" class="text-danger">
-                Nombre es requerido
+  <div class="container">
+    <div class="custom-card">
+      <div class="custom-card-header">
+        <h4 class="mb-0">Encuesta</h4>
+      </div>
+      <div class="custom-card-body">
+        <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+          <div class="custom-form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['nombre'].invalid && encuestaForm.controls['nombre'].touched" class="custom-text-danger">
+              Nombre es requerido
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" formControlName="apellido" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['apellido'].invalid && encuestaForm.controls['apellido'].touched" class="custom-text-danger">
+              Apellido es requerido
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label for="edad">Edad:</label>
+            <input id="edad" formControlName="edad" type="number" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['edad'].invalid && encuestaForm.controls['edad'].touched" class="custom-text-danger">
+              Edad debe estar entre 18 y 99 años
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono" formControlName="telefono" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['telefono'].invalid && encuestaForm.controls['telefono'].touched" class="custom-text-danger">
+              Número de teléfono debe contener 10 dígitos
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label>¿Te ha gustado la página?</label>
+            <input formControlName="pregunta1" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['pregunta1'].invalid && encuestaForm.controls['pregunta1'].touched" class="custom-text-danger">
+              Respuesta a la pregunta 1 es requerida
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label>¿Te has divertido jugando a los juegos?</label>
+            <input formControlName="pregunta2" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['pregunta2'].invalid && encuestaForm.controls['pregunta2'].touched" class="custom-text-danger">
+              Respuesta a la pregunta 2 es requerida
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label>¿Te gustaría ser programador?</label>
+            <input formControlName="pregunta3" class="custom-input" />
+            <div *ngIf="encuestaForm.controls['pregunta3'].invalid && encuestaForm.controls['pregunta3'].touched" class="custom-text-danger">
+              Respuesta a la pregunta 3 es requerida
+            </div>
+          </div>
+
+          <div class="custom-form-group">
+            <label>¿Cuáles de estos lenguajes de programación te interesan?</label>
+            <div formGroupName="lenguajes">
+              <div class="custom-form-check">
+                <input type="checkbox" id="javascript" formControlName="javascript" class="custom-checkbox">
+                <label for="javascript">JavaScript</label>
+              </div>
+              <div class="custom-form-check">
+                <input type="checkbox" id="python" formControlName="python" class="custom-checkbox">
+                <label for="python">Python</label>
+              </div>
+              <div class="custom-form-check">
+                <input type="checkbox" id="java" formControlName="java" class="custom-checkbox">
+                <label for="java">Java</label>
+              </div>
+              <div *ngIf="encuestaForm.get('lenguajes')?.hasError('requiredCheckbox') && encuestaForm.get('lenguajes')?.touched" class="custom-text-danger">
+                Debes seleccionar al menos un lenguaje.
               </div>
             </div>
-  
-            <div class="form-group mb-3">
-              <label for="apellido">Apellido:</label>
-              <input id="apellido" formControlName="apellido" class="form-control" />
-              <div *ngIf="encuestaForm.controls['apellido'].invalid && encuestaForm.controls['apellido'].touched" class="text-danger">
-                Apellido es requerido
-              </div>
-            </div>
-  
-            <div class="form-group mb-3">
-              <label for="edad">Edad:</label>
-              <input id="edad" formControlName="edad" type="number" class="form-control" />
-              <div *ngIf="encuestaForm.controls['edad'].invalid && encuestaForm.controls['edad'].touched" class="text-danger">
-                Edad debe estar entre 18 y 99 años
-              </div>
-            </div>
-  
-            <div class="form-group mb-3">
-              <label for="telefono">Teléfono:</label>
-              <input id="telefono" formControlName="telefono" class="form-control" />
-              <div *ngIf="encuestaForm.controls['telefono'].invalid && encuestaForm.controls['telefono'].touched" class="text-danger">
-                Número de teléfono debe contener 10 dígitos
-              </div>
-            </div>
-  
-            <div class="form-group mb-3">
-              <label>¿Te ha gustado la página?</label>
-              <input formControlName="pregunta1" class="form-control" />
-              <div *ngIf="encuestaForm.controls['pregunta1'].invalid && encuestaForm.controls['pregunta1'].touched" class="text-danger">
-                Respuesta a la pregunta 1 es requerida
-              </div>
-            </div>
-  
-            <div class="form-group mb-3">
-              <label>¿Te has divertido jugando a los juegos?</label>
-              <input formControlName="pregunta2" class="form-control" />
-              <div *ngIf="encuestaForm.controls['pregunta2'].invalid && encuestaForm.controls['pregunta2'].touched" class="text-danger">
-                Respuesta a la pregunta 2 es requerida
-              </div>
-            </div>
-  
-            <div class="form-group mb-3">
-              <label>¿Te gustaría ser programador?</label>
-              <input formControlName="pregunta3" class="form-control" />
-              <div *ngIf="encuestaForm.controls['pregunta3'].invalid && encuestaForm.controls['pregunta3'].touched" class="text-danger">
-                Respuesta a la pregunta 3 es requerida
-              </div>
-            </div>
-  
-            <button type="submit" class="btn btn-primary" [disabled]="encuestaForm.invalid">Enviar</button>
-          </form>
-        </div>
+          </div>
+
+          <button type="submit" class="custom-btn" [disabled]="encuestaForm.invalid">Enviar</button>
+        </form>
       </div>
     </div>
   </div>
+</div>

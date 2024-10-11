@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Firestore, collection, addDoc, CollectionReference } from '@angular/fire/firestore';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { User } from '@firebase/auth';
 import { inject } from '@angular/core';
+
+// Validación personalizada para checkboxes
+const atLeastOneCheckboxChecked: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const controls = control.value;
+  if (controls.javascript || controls.python || controls.java) {
+    return null; // Si al menos uno está marcado, la validación pasa
+  }
+  return { requiredCheckbox: true }; // Si ninguno está marcado, falla la validación
+};
 
 @Component({
   selector: 'app-encuesta',
@@ -27,7 +36,12 @@ export class EncuestaComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern('^\\d{10}$')]],
       pregunta1: ['', Validators.required],
       pregunta2: ['', Validators.required],
-      pregunta3: ['', Validators.required]
+      pregunta3: ['', Validators.required],
+      lenguajes: this.fb.group({
+        javascript: [false],
+        python: [false],
+        java: [false]
+      }, { validator: atLeastOneCheckboxChecked })  // Validación de los checkboxes
     });
 
     this.authService.getUser().subscribe((user: User | null) => {
