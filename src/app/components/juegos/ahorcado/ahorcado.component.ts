@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogVictoriaComponent } from '../../dialog-victoria/dialog-victoria.component';
 import { DialogDerrotaComponent } from '../../dialog-derrota/dialog-derrota.component';
+import { RankingService } from '../../../services/ranking.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -12,7 +12,6 @@ import { DialogDerrotaComponent } from '../../dialog-derrota/dialog-derrota.comp
   styleUrls: ['./ahorcado.component.scss']
 })
 export class AhorcadoComponent {
-
   constructor(private dialog: MatDialog) {}
 
   abecedario: string[] = [];
@@ -23,6 +22,7 @@ export class AhorcadoComponent {
   palabraActual: string = "";
   palabraActualAux!: string[];
   deshabilitarLetras: boolean = false;
+  private rankingService = inject(RankingService);
   palabrasRandom: string[] = [
     'ventana', 'lámpara', 'sofá', 'escritorio', 'alfombra', 'cuadro', 'mesa', 'silla', 'cortina', 
     'cerca', 'tapiz', 'puerta', 'espejo', 'estante', 'estufa', 'chimenea', 'refrigerador', 'horno', 
@@ -32,60 +32,75 @@ export class AhorcadoComponent {
     'scanner', 'cámara', 'micrófono', 'cargador'
   ];
 
+  // Nuevas propiedades
+  vidas: number = 2; // Dos vidas
+  palabrasAcertadas: number = 0; // Contador de palabras acertadas
+
   ngOnInit(): void {
     this.generarAbecedario();
     this.elegirPalabra(); // Inicializa una palabra al inicio
   }
 
   generarAbecedario(): void {
-    this.abecedario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    this.abecedario = 'abcdefghijklmnopqrstuvwxyzñ'.split('');
     this.abecedarioAux = [...this.abecedario];
   }
 
   seleccionarLetra(letra: string) {
-    this.letraSeleccionada = letra.toUpperCase();
-    const letraNormalizada = this.normalizeText(letra).toUpperCase();
-    const letraIndex = this.abecedarioAux.indexOf(letra.toLowerCase());
-
-    if (letraIndex !== -1) {
-      let flag = false;
-      let flagWin = true;
-
+    const letraNormalizada = this.normalizeText(letra.toLowerCase());
+    
+    // Solo proceder si la letra seleccionada es válida
+    if (this.abecedarioAux.includes(letraNormalizada)) {
+      this.letraSeleccionada = letraNormalizada.toUpperCase();
+      const letraIndex = this.abecedarioAux.indexOf(letraNormalizada);
+      let acertoLetra = false;
+  
+      // Revisar si la letra está en la palabra
       for (let i = 0; i < this.palabraActual.length; i++) {
-        if (this.normalizeText(this.palabraActual[i]).toUpperCase() === letraNormalizada) {
-          this.palabraActualAux[i] = this.palabraActual[i].toUpperCase();
-          flag = true;
-        }
-        if (this.palabraActualAux[i] === '_') {
-          flagWin = false;
+        if (this.normalizeText(this.palabraActual[i]) === letraNormalizada) {
+          this.palabraActualAux[i] = letraNormalizada.toUpperCase();
+          acertoLetra = true;
         }
       }
-
-      if (!flag) {
+  
+      // Si no se acertó la letra
+      if (!acertoLetra) {
         this.intentos++;
-        if(this.horca<6)
-        this.horca++;
-      }
-
-      if (this.intentos === 6) {
-        this.deshabilitarLetras = true;
-        this.dialog.open(DialogDerrotaComponent, {
-          data: { palabra: this.palabraActual.toUpperCase() },
-          disableClose: true,
-        });
-      } 
-      else if (flagWin) {
-        this.deshabilitarLetras = true;
-        this.dialog.open(DialogVictoriaComponent);
-      }
-
-      // Actualizar el array de letras disponibles
+        this.horca++; // Incrementa el número de horca mostrado
+  
+        if (this.intentos === 6) {
+          this.vidas--; // Se pierde una vida
+          this.intentos = 0; // Reiniciar intentos al perder una vida
+          this.horca = 1; // Reiniciar la horca
+  
+          if (this.vidas === 0) { // Si no hay vidas
+            this.deshabilitarLetras = true;
+            if (this.palabrasAcertadas != 0){
+              this.guardarPuntaje("Ahorcado",this.palabrasAcertadas)
+            }
+            this.dialog.open(DialogDerrotaComponent, {
+              data: { palabra: this.palabraActual.toUpperCase() },
+              disableClose: true,
+            });
+            return;
+          }
+        }
+      }   
+  
+      // Deshabilitar la letra seleccionada
       this.abecedarioAux.splice(letraIndex, 1);
+  
+      // Comprobar si el jugador ha ganado
+      if (!this.palabraActualAux.includes('_')) {
+        this.palabrasAcertadas++; // Incrementa palabras acertadas
+        this.actualizarPalabra(); // Cambia la palabra para un nuevo juego
+      }
     }
   }
-
-  estaSeleccionada(letter: string): boolean {
-    return !this.abecedarioAux.includes(letter.toLowerCase());
+  
+  actualizarPalabra() {
+    this.elegirPalabra(); // Elige una nueva palabra
+    this.palabraActualAux = Array(this.palabraActual.length).fill('_'); // Reinicia la palabra auxiliar
   }
 
   elegirPalabra() {
@@ -95,13 +110,25 @@ export class AhorcadoComponent {
     this.letraSeleccionada = "";
     this.abecedarioAux = [...this.abecedario];
 
-    let indice = Math.floor(Math.random() * this.palabrasRandom.length);
+    const indice = Math.floor(Math.random() * this.palabrasRandom.length);
     this.palabraActual = this.palabrasRandom[indice];
-    this.palabraActualAux = this.palabraActual.split('').map(() => '_');
+    this.palabraActualAux = Array(this.palabraActual.length).fill('_'); // Inicializa con guiones bajos
+  }
+
+  estaSeleccionada(letter: string): boolean {
+    return !this.abecedarioAux.includes(letter);
   }
 
   normalizeText(text: string): string {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   }
 
+  async guardarPuntaje(nombre: string, puntaje: number) {
+    try {
+      await this.rankingService.agregarPuntaje(puntaje, nombre);
+      console.log('Puntaje guardado con éxito');
+    } catch (error) {
+      console.error('Error al guardar el puntaje', error);
+    }
+  }
 }

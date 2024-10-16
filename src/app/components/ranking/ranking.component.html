@@ -1,0 +1,28 @@
+<div id="divTotal" class="background-image">
+    <div class="ranking-container">
+        <h2>Puntajes</h2>
+        <div class="botones-juego">
+            <button (click)="seleccionarJuego('preguntados')">Preguntados</button>
+            <button (click)="seleccionarJuego('mayormenor')">Mayor o Menor</button>
+            <button (click)="seleccionarJuego('Ahorcado')">Ahorcado</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario:</th>
+                    <th>Puntos:</th>
+                    <th>Fecha:</th>
+                    <th>Juego:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let jugador of puntajesMostrados">
+                    <td>{{ jugador.nombre }}</td>
+                    <td>{{ jugador.puntaje }}</td>
+                    <td>{{ jugador.fecha?.toDate() | date:'short' }}</td>
+                    <td>{{ jugador.juego }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

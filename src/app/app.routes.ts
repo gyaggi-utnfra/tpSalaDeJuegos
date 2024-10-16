@@ -53,6 +53,13 @@ export const routes: Routes = [
             (m) => m.MouseComponent,
         ),
         canActivate: [AuthGuard],  
+    },
+    {
+        path: "ranking",
+        loadComponent: () => import('./components/ranking/ranking.component').then(
+          (m) => m.RankingComponent,
+        ),
+        canActivate: [AuthGuard],
     },    
     {
         path: "chat",

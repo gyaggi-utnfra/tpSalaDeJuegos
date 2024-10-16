@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
 
+
 @Component({
   selector: 'app-dialog',
   standalone: true,
@@ -29,10 +30,13 @@ export class DialogComponent {
   onMenuClick(): void {
     this.router.navigateByUrl('/home');
   }
+  
 
   onRetryClick(): void {
     if (this.data.retryAction) {
       this.data.retryAction();
     }
   }
+
+
 }
